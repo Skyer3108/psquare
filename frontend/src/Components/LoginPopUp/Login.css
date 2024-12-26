@@ -90,10 +90,12 @@ padding: 16px 20px 16px 20px;
 gap: 8px;
 border-radius: 8px ;
 border: 1px solid  #6036b4;
+color: black;
 
 
 }
 .btn{
+    cursor: pointer;
     margin-top: 20px;
     width: 200px;
     height: 40px;
