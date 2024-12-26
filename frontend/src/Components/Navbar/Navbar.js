@@ -7,9 +7,9 @@ const Navbar=()=>{
                 <p>Candidate</p>
 
                 <div className='nav-left'>
-                    <img src='#'/>
-                    <img src='#'/>
-                    <img src='#'/>
+                    <img src='#' alt=""/>
+                    <img src='#' alt=""/>
+                    <img src='#' alt=""/>
                 </div>
             </div>
       

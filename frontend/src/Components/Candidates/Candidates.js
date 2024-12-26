@@ -58,7 +58,7 @@ getCandidates()
 
         getCandidates()
 
-    },[])
+    },[getCandidates])
 
 
 
