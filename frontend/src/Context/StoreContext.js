@@ -3,7 +3,7 @@ import { createContext } from "react"
 export const StoreContext=createContext(null) 
 const StoreContextProvider=(props)=>{
 
-    const url='http://localhost:5005'
+    const url='https://psqure-backed.onrender.com'
     return(
         <StoreContext.Provider value={{url}}>
             {props.children}
