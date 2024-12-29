@@ -2,25 +2,37 @@ const candidateSchema = require('../Schema/candidateSchema')
 const empSchema=require('../Schema/empSchema')
 const addCandidate = async (req, res) => {
 
-    const { name, email, phno, position, status,
+    const { name, email, phno,position, 
         experience, } = req.body
 
     try {
 
-        if (!name || !email || !phno || !position || !status || !experience) {
+        if (!name || !email || !phno ||  !position  || !experience) {
             return res.status(400).send({
                 message: 'All fields are required'
             });
         }
+
+        console.log(name, email, phno, position, 
+            experience,)
+
+
+        const emailExist=await candidateSchema.findOne({email})
+
+        if(emailExist){
+            return res.send({
+                status:400,
+                message:'Email Already Exists'
+            })
+        }
         const newCandidate = new candidateSchema({
-            name, email, phno, position, status,
+            name, email, phno,  position, 
             experience,
         })
-        console.log(name, email, phno, position, status,
-            experience,)
+      
         
         const saveCandidate = await newCandidate.save()
-        console.log(name, email, phno, position, status,
+        console.log(name, email, phno, position,
             experience,)
 
         return res.send({
@@ -29,7 +41,7 @@ const addCandidate = async (req, res) => {
             message: 'Candidate Added Sucessfully'
         })
     } catch (err) {
-
+console.log(err.message)
         return res.send({
             status: 400,
             message: 'Adding Candidate Error',
@@ -106,6 +118,7 @@ const updateStatus = async (req, res) => {
                 email:updateCandidate.email,
                phno:updateCandidate.phno,
                positon:updateCandidate.position,
+               dob:new Date()
             
 
               })

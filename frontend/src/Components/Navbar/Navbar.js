@@ -1,4 +1,7 @@
 import './navbar.css'
+
+import { assets } from '../../assets/assets'
+
 const Navbar=()=>{
 
     return(
@@ -7,9 +10,9 @@ const Navbar=()=>{
                 <p>Candidate</p>
 
                 <div className='nav-left'>
-                    <img src='#' alt=""/>
-                    <img src='#' alt=""/>
-                    <img src='#' alt=""/>
+                    <img src={assets.mail} alt=""/>
+                    <img src={assets.noti} alt=""/>
+                    <img src={assets.profile} alt=""/>
                 </div>
             </div>
       

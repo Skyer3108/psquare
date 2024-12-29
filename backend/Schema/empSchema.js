@@ -16,10 +16,20 @@ const empSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    positon:{
+    position:{
         type:String,
         required:true
     },
+    department:{
+        type:String,
+        enum:['Team Lead','Intern','senior Developer','Full Time'],
+        default:'Intern'
+
+    },
+    dob:{
+        type:Date,
+        required:true
+    }
     // department:{
     //     type:String,
     //     required:true

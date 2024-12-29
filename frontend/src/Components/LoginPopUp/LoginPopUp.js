@@ -132,7 +132,7 @@ const LoginPopUp = ({ handleLoginSuccess }) => {
 
 
                 <div className='login-left'>
-                    bhbb
+                  
                 </div>
             </div>
         </div>

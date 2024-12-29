@@ -4,12 +4,14 @@ import AddCandidate from './AddCandidate'
 import { StoreContext } from '../../Context/StoreContext'
 import axios from 'axios'
 
-const Candidates = ({handlePop}) => {
+import { assets } from '../../assets/assets'
+
+const Candidates = ({ handlePop }) => {
 
     const [isPopupVisible, setIsPopupVisible] = useState(false)
-    const {url}=useContext(StoreContext)
+    const { url } = useContext(StoreContext)
     const [selectedCandidate, setSelectedCandidate] = useState(null)
-    const [data,setData]=useState([])
+    const [data, setData] = useState([])
 
     console.log(url)
 
@@ -18,9 +20,9 @@ const Candidates = ({handlePop}) => {
         setIsPopupVisible(true)
     }
 
-    const getCandidates=async()=>{
+    const getCandidates = async () => {
 
-        const res=await axios.get(url+'/api/candidate/getall-candidate/')
+        const res = await axios.get(url + '/api/candidate/getall-candidate/')
 
         console.log(res.data.data)
         setData(res.data.data)
@@ -28,37 +30,54 @@ const Candidates = ({handlePop}) => {
     }
 
 
-    const handleStatusChange = async(status) => {
+    const handleStatusChange = async (status) => {
 
-        let dat={
+        let dat = {
             status
         }
 
         console.log(`${url}+/api/candidate/update-candidate/${selectedCandidate}`)
 
-        const res=await axios.patch(`${url}/api/candidate/update-candidate/${selectedCandidate}`,dat)
+        const res = await axios.patch(`${url}/api/candidate/update-candidate/${selectedCandidate}`, dat)
 
         console.log(res)
-        if(res.data.status===200){
+        if (res.data.status === 200) {
 
-console.log('hhhh')
-getCandidates()
+            console.log('hhhh')
+            getCandidates()
             setIsPopupVisible(false)
             setSelectedCandidate(null)
         }
-        else{
+        else {
             alert(res.data.message)
         }
 
-    
-      
+
+
     }
 
-    useEffect(()=>{
+    //delete
+    const handleDelete=async(id)=>{
+
+        console.log(id)
+
+        const res=await axios.delete(`${url}/api/candidate/delete-cadidate/${id}`)
+console.log(res)
+        if(res.data.status===200){
+
+            alert(res.data.message)
+            getCandidates()
+
+        }else{
+       alert(res.data.message)
+        }
+    }
+
+    useEffect(() => {
 
         getCandidates()
 
-    },[getCandidates])
+    }, [])
 
 
 
@@ -67,7 +86,7 @@ getCandidates()
     return (
         <div className='main-can'>
 
-           
+
 
             <div className="ser">
 
@@ -113,29 +132,36 @@ getCandidates()
                     <p>Resume</p>
 
 
+
+
                 </div>
 
-               
-                    {
-                       data.map((candidate,index)=>(
-                        <div key={candidate._id} className='candi-data'>
-                            <p>{index}</p>
-                    <p>{candidate.name}</p>
-                    <p>{candidate.email}</p>
-                    <p>{candidate.phno}</p>
-                    <p>{candidate.position}</p>
-                    <p onClick={()=>handleStatusClick(candidate._id)}>{candidate.status}</p>
-                    <p>{candidate.experience}</p>
-                    <p>Resume</p>
-                            </div>
-                       ))
-                    }
 
-                
+                {
+                    data.map((candidate, index) => (
+                        <div key={candidate._id} className='candi-data'>
+                            <p>{index + 1}</p>
+                            <p>{candidate.name}</p>
+                            <p>{candidate.email}</p>
+                            <p>{candidate.phno}</p>
+                            <p>{candidate.position}</p>
+                            <p onClick={() => handleStatusClick(candidate._id)}>{candidate.status}</p>
+                            <p>{candidate.experience}</p>
+                            <div className='resume'>
+                                <p>Resume</p>
+                                <img onClick={()=>handleDelete(candidate._id)} src={assets.delet} />
+                            </div>
+
+
+                        </div>
+                    ))
+                }
+
+
 
             </div>
-             {/* Status change popup */}
-             {isPopupVisible && (
+            {/* Status change popup */}
+            {isPopupVisible && (
                 <div className="status-popup">
                     <div className="status-popup-content">
                         <h3>Select New Status</h3>

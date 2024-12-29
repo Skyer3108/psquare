@@ -49,7 +49,19 @@ text-decoration-skip-ink: none;
 
 }
 
+.sidebar-options .heading-section{
+    padding-left: 30px;
+}
+.log-out{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    gap: 10px;
+}
 .sidebar-options{
+    
+   
     padding-top: 50px;
     
     display: flex;
@@ -58,9 +70,12 @@ text-decoration-skip-ink: none;
     gap:20px;
 }
 .siderbar-recruit{
+
     text-align: center;
 }
 .sidebar-option{
+
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,3 +100,6 @@ text-underline-position: from-font;
 text-decoration-skip-ink: none;
 
 }
+
+
+
