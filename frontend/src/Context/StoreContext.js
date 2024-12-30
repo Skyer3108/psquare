@@ -4,7 +4,7 @@ export const StoreContext=createContext(null)
 const StoreContextProvider=(props)=>{
 
     // const url='https://psqure-backed.onrender.com'
-    const url='https://psquare-backend-app.onrender.com'
+    const url='https://psqure-backed.onrender.com'
     return(
         <StoreContext.Provider value={{url}}>
             {props.children}
