@@ -18,7 +18,7 @@ function App() {
   const [showAdd, setShowAdd] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [logoutPopup, setLogoutPopup] = useState(true)
+  const [logoutPopup, setLogoutPopup] = useState(false)
 
   //edit candidate
   const [editCandidate, setEditCandidate] = useState(null)
